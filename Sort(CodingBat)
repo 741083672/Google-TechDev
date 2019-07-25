@@ -1,0 +1,33 @@
+/*Return an array that contains the sorted values from the input array with duplicates removed.
+sort([]) → []
+sort([1]) → [1]
+sort([1, 1]) → [1]*/
+
+
+import java.util.Arrays;
+
+class Solution {
+    int[] sort(int[] a) {
+        if (a.length == 0) return new int[]{};
+        Arrays.sort(a);
+        int i = 0;
+        for (int j = 1; j < a.length; j++) {
+            if (a[j] != a[i]) {
+                i++;
+                a[i] = a[j];
+            }
+        }
+        int[] result = new int[i + 1];
+        for (int j = 0; j <= i; j++)
+            result[j] = a[j];
+        return result;
+    }
+}
+
+class test {
+    public static void main(String[] args) {
+        int[] arr = {1, 1, 1, 2, 3};
+        Solution solution = new Solution();
+        System.out.println(Arrays.toString(solution.sort(arr)));
+    }
+}
