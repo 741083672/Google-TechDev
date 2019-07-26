@@ -1,0 +1,25 @@
+/*
+Write a function that replaces the words in `raw` with the words in `code_words` such that the first occurrence of each word in `raw` is assigned the first unassigned word in `code_words`.
+
+encoder(["a"], ["1", "2", "3", "4"]) → ["1"]
+encoder(["a", "b"], ["1", "2", "3", "4"]) → ["1", "2"]
+encoder(["a", "b", "a"], ["1", "2", "3", "4"]) → ["1", "2", "1"]
+*/
+
+
+import java.util.HashMap;
+import java.util.Map;
+
+class Solution {
+    public String[] encoder(String[] raw, String[] code_words) {
+        Map<String, String> map1 = new HashMap <>();
+        int i = 0, j = 0;
+        for (String w : raw)
+            if (!map1.containsKey(w))
+                map1.put(w, code_words[i++]);
+        String[] answer = new String[raw.length];
+        for (String ans : raw)
+            answer[j++] = map1.get(ans);
+        return answer;
+    }
+}
